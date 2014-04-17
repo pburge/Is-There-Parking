@@ -1,39 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Is There Parking</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Is There Parking</title>
 
-		<!-- Bootstrap -->
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<!-- Other Style Sheets -->
-		<link rel="stylesheet" href="css/main.css">
-	</head>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Other Style Sheets -->
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
 
-	<body>
-		<div class='container'>
+	<div class='container'>
 
-		<div class="navbar navbar-inverse">
+		<div class="navbar navbar-default" role="navigation">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">Is There Parking?</a>
 			</div>
-			
-		</div>
+			<div class="collapse navbar-collapse">
+				<div class="navbar-form navbar-left">
+					<button class='btn btn-info'>Register</button>
+				</div>
 
-			<h1>Hello, world!</h1>
+				<form class="navbar-form navbar-right">
+					<div class="divider"></div>
+					<div class="form-group">
+						<input id="username" type="text" placeholder="username" class="form-control">
+					</div>
+					<div class="form-group">
+						<input id="password" type="password" placeholder="password" class="form-control">
+					</div>
+					<button id="button" type="submit" class="btn btn-success">Sign in</button>
+				</form>
+
+			</div>
 		</div>
 	
+		<div class='jumbotron'>
+			<h1>Hello, world!</h1>
+		</div>
+	</div>
+
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	</body>
+</body>
 </html>
 
