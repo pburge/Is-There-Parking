@@ -13,5 +13,3 @@ function initialize() {
 	var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
 	var myMarker = new google.maps.Marker({ position: pos, map: map, title:"About.com Headquarters" });
 }
-
-// 28.5968780,-81.3007476
