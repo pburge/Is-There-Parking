@@ -1,9 +1,17 @@
 function initialize() {
-  var mapOptions = {
-    zoom: 17,
-    center: new google.maps.LatLng(28.5962103,-81.3013229)
-  };
+	var lat = 28.5968780;
+	var lng = -81.3007476;
 
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);
+	var pos = new google.maps.LatLng(lat,lng);
+
+	var mapOptions = {
+		zoom: 19,
+		center: new google.maps.LatLng(lat,lng),
+		mapTypeId: google.maps.MapTypeId.SATELLITE
+	};
+
+	var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+	var myMarker = new google.maps.Marker({ position: pos, map: map, title:"About.com Headquarters" });
 }
+
+// 28.5968780,-81.3007476
