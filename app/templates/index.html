@@ -1,0 +1,42 @@
+<style>
+	map, div[map] { display:block; height:400px; }
+</style>
+
+<script id="my-script">
+
+	function MyCtrl($scope) {
+		var mypos;
+		navigator.geolocation.getCurrentPosition(function(response){
+			var mypos = response.coords.latitude + ',' + response.coords.longitude;
+
+			},function(errorResponse){
+			console.log('error', errorResponse)
+		});
+		$scope.positions =[ 
+			[28.594483, -81.304403], [28.594437, -81.304399], 
+			[28.594853, -81.304794],[28.594829, -81.304801],
+			[28.594808, -81.304792] 
+		];
+		console.log('POSITION:',mypos);
+	}
+
+	// function getPos($scope){
+	// 	navigator.geolocation.getCurrentPosition(function(response){
+	// 		console.log(response.coords.latitude, response.coords.longitude);
+	// 		mypos = response.coords.latitude + ',' + response.coords.longitude;
+	// 		$scope.positions = [ mypos ];
+	// 		console.log(mypos);
+	// 		},function(errorResponse){
+	// 		console.log('error', errorResponse)            
+	// 	});
+	// }
+
+</script>
+
+<div id="my-html" style="height:100%" ng-controller="MyCtrl">
+	<map zoom="20" center="[28.594484, -81.304398]" map-type-id="MapTypeId.SATELLITE" ng-controller="MyCtrl">
+		<marker position="current" animation="Animation.BOUNCE" centered="true"></marker>
+		<marker ng-repeat="p in positions" position="{{p}}" title="{{p.toString()}}"></marker>
+	</map>
+
+</div>

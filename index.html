@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="parking">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,10 +11,8 @@
 	<link rel="stylesheet" href="css/main.css">
 
 </head>
-<body onload="initialize()">
-
+<body>
 	<div class='container'>
-
 		<div class="navbar navbar-default" role="navigation">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,13 +20,14 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Is There Parking?</a>
+				<a class="navbar-brand" href="#/">Is There Parking?</a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<div class="navbar-form navbar-left">
-					<button class='btn btn-info'>Register</button>
+					<a href="#/register">
+						<button class='btn btn-info'>Register</button>
+					</a>
 				</div>
-
 				<form class="navbar-form navbar-right">
 					<div class="divider"></div>
 					<div class="form-group">
@@ -42,17 +41,21 @@
 
 			</div>
 		</div>
-		<div id="map-canvas"></div>
+
+		<div ng-view=""></div>
+
 	</div>
 
-	
-
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<!-- Linked Scripts -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLz7utlcbbD1lE4QfStrnxkiHr9wU1C8g&sensor=false"></script>
-	<script src='js/main.js'></script>
+	<script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.js'></script>
+	<script src="https://cdn.firebase.com/js/client/1.0.11/firebase.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+	<script src='app/app.js'></script>
+
 </body>
 </html>
 

@@ -1,0 +1,76 @@
+unit test - code func
+end to end - open a browser and checks elements
+
+
+
+---mobile app
+next 2 weeeks final project bootcamp
+day 9 is alpha, day 10 is final
+must be in angular. data must come in from api or db. or both
+must use a mobile-first front end framework, testing will be done on a mobile device. 
+site must be mobile first.
+think about how to market the app to users (be it word of mouth or fliers);
+
+--topic or idea and ways of distribution
+one question: how are people going to know about the product?
+-there was an app name roomies where one could sign up with roomates to track bills. 
+-a budget mngmt system that emails people depending on the due date.
+
+g4tv: dice - design outside the box:
+
+
+
+--target audience is toward fullsail students.
+something that addresses an issue. 
+for example: "should i ride my bike today" -- checks weather and says yes or no.
+
+--notes:
+COMMENT EVERYTHING (specifically, logics);
+
+
+
+
+---idea:
+"is there parking?"
+-this app is used to sort of check if there's parking. 
+
+-the only drawback is that this requires all students who drive to use the app.
+
+-before they leave the house, they would check if there are any spots open. 
+
+-they would then get some kind of notification saying how many approximate spots are left and where they're located.
+
+-once they park, they take a moment to enter what lot they're in and use geo-location to say what spot they've taken.
+
+-users can gain "parking points" by pointing out open spots (probably using geo-location or by entering the spot number);
+
+-	after pointing out the spot, the app would cross reference with a db that says whether the spot is open or not and award
+	the user accordingly.
+
+-	after a certain amount of earned points, the user can turn those in for free starbucks coffees or...a small lunch at
+	crispers or firehouse.
+
+-	to prevent abuse, users can only point out 2 or 3 spots per day so they won't go on a saturday or sunday and just point
+	out spots all day.
+
+----------------------------
+
+maybe have a referal
+have a system limit as to how long they wil be open
+an approzimate spot. 
+
+
+
+
+
+
+320
+
+
+768
+992
+1200
+
+
+
+

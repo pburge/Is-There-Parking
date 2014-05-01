@@ -1,0 +1,10 @@
+<div ng-controller="MyController">
+  <ul ng-repeat="person in people">
+    <li>{{ person }}</li>
+    <!-- <li>{{ person.newPerson }}</li> -->
+    <!-- <li>{{ person.name }}</li> -->
+    <!-- <li>{{ person.other }}</li> -->
+  </ul>
+  <input type="text" ng-model="newPerson"/>
+  <button type="submit" ng-click="addPerson()">Add New Person</button>
+</div>

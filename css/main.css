@@ -4,6 +4,8 @@
 	padding: 0px;
 }*/
 
+.angular-google-map-container { height: 400px; }
+
 @media (min-width: 300px) {
 	#map-canvas {
 		height: 300px;
