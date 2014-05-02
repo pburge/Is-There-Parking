@@ -52,7 +52,7 @@
 <div id="my-html" ng-controller="MyCtrl">
 	<map zoom="20" center="[28.594484, -81.304398]" map-type-id="MapTypeId.SATELLITE" ng-controller="MyCtrl">
 		<marker position="current" animation="Animation.BOUNCE" centered="true"></marker>
-		<marker ng-repeat="p in positions" position="{{p}}" title="{{p.toString()}}"></marker>
+		<marker ng-repeat="p in positions" position="{{p}}" title="{{p.toString()}}" draggable="true"></marker>
 	</map>
 
 </div>
