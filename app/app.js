@@ -1,11 +1,11 @@
 var ngMap = angular.module('parking', ['ngRoute','firebase']);  //map directives
 
 ngMap.config(function($routeProvider) {
-	$routeProvider.
-		when('/',
-		{
-			templateUrl: 'app/templates/index.html'
-		}).
+  $routeProvider.
+    when('/',
+    {
+      templateUrl: 'app/templates/index.html'
+    }).
     when('/register',
     {
       templateUrl: 'app/templates/register.html'

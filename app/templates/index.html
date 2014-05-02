@@ -1,5 +1,21 @@
 <style>
-	map, div[map] { display:block; height:400px; }
+
+	@media (min-width: 300px) {
+		map, div[map] { display:block; height:300px; }
+	}
+
+	@media (min-width: 768px) {
+		map, div[map] { display:block; height:400px; }
+	}
+
+	@media (min-width: 992px) {
+		map, div[map] { display:block; height:500px; }
+	}
+
+	@media (min-width: 1200px) {
+		map, div[map] { display:block; height:600px; }
+	}
+
 </style>
 
 <script id="my-script">
@@ -33,7 +49,7 @@
 
 </script>
 
-<div id="my-html" style="height:100%" ng-controller="MyCtrl">
+<div id="my-html" ng-controller="MyCtrl">
 	<map zoom="20" center="[28.594484, -81.304398]" map-type-id="MapTypeId.SATELLITE" ng-controller="MyCtrl">
 		<marker position="current" animation="Animation.BOUNCE" centered="true"></marker>
 		<marker ng-repeat="p in positions" position="{{p}}" title="{{p.toString()}}"></marker>
