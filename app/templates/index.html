@@ -6,51 +6,53 @@
 
 	@media (min-width: 768px) {
 		map, div[map] { display:block; height:400px; }
+		.spot{
+			visibility:hidden;
+		}
 	}
 
 	@media (min-width: 992px) {
 		map, div[map] { display:block; height:500px; }
+		.spot{
+			visibility:hidden;
+		}
 	}
 
 	@media (min-width: 1200px) {
 		map, div[map] { display:block; height:600px; }
+		.spot{
+			visibility:hidden;
+		}
 	}
 
 </style>
 
 <script id="my-script">
-
+	var mypos;
+console.log('POSITION1:',mypos);
 	function MyCtrl($scope) {
-		var mypos;
+		
+
 		navigator.geolocation.getCurrentPosition(function(response){
 			var mypos = response.coords.latitude + ',' + response.coords.longitude;
-
+			// console.log('NAVIGATOR1:',mypos);
 			},function(errorResponse){
 			console.log('error', errorResponse)
 		});
+
 		$scope.positions =[ 
 			
 		];
-		console.log('POSITION:',mypos);
 	}
-
-	// function getPos($scope){
-	// 	navigator.geolocation.getCurrentPosition(function(response){
-	// 		console.log(response.coords.latitude, response.coords.longitude);
-	// 		mypos = response.coords.latitude + ',' + response.coords.longitude;
-	// 		$scope.positions = [ mypos ];
-	// 		console.log(mypos);
-	// 		},function(errorResponse){
-	// 		console.log('error', errorResponse)            
-	// 	});
-	// }
 
 </script>
 
 <div id="my-html" ng-controller="MyCtrl">
 	<map zoom="20" center="[28.594484, -81.304398]" map-type-id="MapTypeId.SATELLITE" ng-controller="MyCtrl">
 		<marker position="current" animation="Animation.BOUNCE" centered="true"></marker>
-		<marker ng-repeat="p in positions" position="{{p}}" title="{{p.toString()}}" draggable="true"></marker>
+		<!-- <marker ng-repeat="p in positions" position="{{p}}" title="{{p.toString()}}" draggable="true"></marker> -->
 	</map>
+	<br>
+	<button class='spot btn btn-info btn-lg btn-block'>Point out a spot</button>
 
 </div>
