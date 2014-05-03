@@ -6,53 +6,66 @@
 
 	@media (min-width: 768px) {
 		map, div[map] { display:block; height:400px; }
-		.spot{
+		/*.spot{
 			visibility:hidden;
-		}
+		}*/
 	}
 
 	@media (min-width: 992px) {
 		map, div[map] { display:block; height:500px; }
-		.spot{
+		/*.spot{
 			visibility:hidden;
-		}
+		}*/
 	}
 
 	@media (min-width: 1200px) {
-		map, div[map] { display:block; height:600px; }
-		.spot{
+		map, div[map] { display:block; height:300px; }
+		/*.spot{
 			visibility:hidden;
-		}
+		}*/
 	}
 
 </style>
 
 <script id="my-script">
-	var mypos;
-console.log('POSITION1:',mypos);
-	function MyCtrl($scope) {
-		
 
-		navigator.geolocation.getCurrentPosition(function(response){
-			var mypos = response.coords.latitude + ',' + response.coords.longitude;
-			// console.log('NAVIGATOR1:',mypos);
-			},function(errorResponse){
-			console.log('error', errorResponse)
-		});
+	function addMyMarker() { //function that will add markers on button click
 
-		$scope.positions =[ 
-			
-		];
 	}
+
 
 </script>
 
+<!-- <div ng-controller="extraMarker">
+  <ul ng-repeat="m in markers">
+    <li>{{ m }}</li>
+  </ul>
+  <input type="text" ng-model="newMarker"/>
+  <button type="submit" ng-click="addMarker()">Add New Marker</button>
+</div> -->
+
 <div id="my-html" ng-controller="MyCtrl">
-	<map zoom="20" center="[28.594484, -81.304398]" map-type-id="MapTypeId.SATELLITE" ng-controller="MyCtrl">
-		<marker position="current" animation="Animation.BOUNCE" centered="true"></marker>
-		<!-- <marker ng-repeat="p in positions" position="{{p}}" title="{{p.toString()}}" draggable="true"></marker> -->
-	</map>
-	<br>
-	<button class='spot btn btn-info btn-lg btn-block'>Point out a spot</button>
+  <map id='google_map' zoom="20" map-type-id="MapTypeId.SATELLITE" ng-controller="MyCtrl">
+    <marker position="current" animation="Animation.BOUNCE" centered="true"></marker>
+
+    <marker ng-controller='extraMarker' ng-repeat="m in markers" position="{{m}}" title="{{m.toString()}}" icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" draggable="true" animation="Animation.DROP" on-dragstart="dragStart()" on-drag="drag()" on-dragend="dragEnd()"></marker>
+  </map>
+  <br>
+  <button id='drop' ng-controller="extraMarker" ng-click="addMarker()" class='spot btn btn-info btn-lg btn-block'>Point out a spot</button>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

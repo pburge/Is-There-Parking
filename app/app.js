@@ -13,31 +13,67 @@ ngMap.config(function($routeProvider) {
   }//end function
 ); // end config
 
-var mypos;
+
+function MyCtrl($scope,$firebase) {
+  navigator.geolocation.getCurrentPosition(function(response){
+    var markerRef = new Firebase("https://blazing-fire-6476.firebaseio.com/marker");
+    $scope.markers = $firebase(markerRef);
+
+    $scope.addMarker = function(){
+      var p_lat = response.coords.latitude;
+      var p_lng = response.coords.longitude;
+
+      $scope.markers.$add($scope.newMarker);
+      console.log($scope.markers);
+      console.log(p_lat,p_lng - .100);
+      $scope.newMarker = "";
 
 
-function getPos(){
-  // navigator.geolocation.getCurrentPosition(function(response){
-  // console.log(response.coords.latitude, response.coords.longitude);
-  // mypos = response.coords.latitude + ',' + response.coords.longitude;
-  // console.log(mypos);
-  // },function(errorResponse){
-  // console.log('error', errorResponse)            
-  // });
-}
+    }
 
-function MyController($scope, $firebase) {
-  var peopleRef = new Firebase("https://blazing-fire-6476.firebaseio.com/people");
-    $scope.people = $firebase(peopleRef);
-    $scope.addPerson = function() {
-    // AngularFire $add method
-    $scope.people.$add($scope.newPerson);
-    //or add a new person manually
-    // peopleRef.update({name: 'Alex'});
-    console.log($scope, $scope.age, $scope.newPerson);
-    $scope.newPerson = "";
+    var p_lat = response.coords.latitude;
+    var p_lng = response.coords.longitude;
+
+    // $scope.positions =[ 
+    //   [p_lat,p_lng]
+    // ];
+
+
+
+  },function(errorResponse){
+    console.log('error', errorResponse)
+  });
+};
+
+function extraMarker($scope, $firebase){
+  var markerRef = new Firebase("https://blazing-fire-6476.firebaseio.com/marker");
+  $scope.markers = $firebase(markerRef);
+  $scope.addMarker = function(){
+    $scope.markers.$add($scope.newMarker);
+    // console.log($scope,$scope.newMarker);
+    $scope.newMarker = "";
+    $scope.dragStart = function(event) {
+        console.log("drag started");
+    }
+    $scope.drag = function(event) {
+        console.log("dragging");
+    }
+    $scope.dragEnd = function(event) {
+        console.log("drag ended");
+        
+    }
   }
 }
+
+function firebase_controller($scope, $firebase) {
+  var peopleRef = new Firebase("https://blazing-fire-6476.firebaseio.com/people");
+  $scope.people = $firebase(peopleRef);
+  $scope.addPerson = function() {
+    $scope.people.$add($scope.newPerson);
+    console.log($scope.newPerson);
+    $scope.newPerson = "";
+  }
+};
 
 ngMap.directive('infoWindow', [ 'Attr2Options', 
   function(Attr2Options) {
