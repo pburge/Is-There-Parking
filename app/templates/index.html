@@ -1,64 +1,11 @@
 <style>
-
-  @media (min-width: 300px) {
-    map, div[map] { display:block; height:270px; }
+  #canvas {
+      display: block;
+      height: 300px;
   }
-
-  @media (min-width: 768px) {
-    map, div[map] { display:block; height:400px; }
-    /*.spot{
-      visibility:hidden;
-    }*/
-  }
-
-  @media (min-width: 992px) {
-    map, div[map] { display:block; height:500px; }
-    /*.spot{
-      visibility:hidden;
-    }*/
-  }
-
-  @media (min-width: 1200px) {
-    map, div[map] { display:block; height:300px; }
-    /*.spot{
-      visibility:hidden;
-    }*/
-  }
-
 </style>
 
-<div ng-controller="flagCoords">
-  <button ng-click='getFlagCoords()'>Get Flag Coords</button>
-</div>
-
-<div id="my-html" ng-controller="mapController">
-  <map id='google_map' zoom="20" map-type-id="MapTypeId.SATELLITE" ng-controller="extraMarker">
-
-    <marker position="current" animation="Animation.BOUNCE" centered="true" title='current' ></marker>
-
-    <!-- <marker position="[28.5944087,-81.3042881]" title='28.5944087,-81.3042881' icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" draggable="true" animation="Animation.DROP"></marker> -->
-
-    <marker ng-repeat="p in positions" position="{{p}}" title="{{p.toString()}}" icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" draggable="true" animation="Animation.DROP"></marker>
-
-  </map>
-  <br>
-   <p class="ng-binding">Time: </p>
-  <br>
-  <button id='drop' ng-controller="showMarker" ng-click="addMarker()" class='spot btn btn-info btn-lg btn-block'>Point out a spot</button>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div id="canvas" ng-controller="mapController"></div>
+<br />
+<button id='drop' ng-controller="dropMarker" ng-click="newMarker()" class='spot btn btn-info btn-lg btn-block'>Point out a spot</button>
 

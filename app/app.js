@@ -14,55 +14,95 @@ ngMap.config(function($routeProvider) {
 ); // end config
 
 ngMap.controller("extraMarker",function($scope){
-  // console.log('extraMarker',$scope);
+
 });
 
-ngMap.controller('mapController', ['$scope', function($scope,$http,$interval){
- 
-  $scope.positions =[ 
-   [28.594483, -81.304403], [28.594437, -81.304399]
-  ];
+ngMap.controller('mapController', function($scope)
+{
+  var mypos_lat;
+  var mypos_lng;
 
-  var markers = [];
-  for (var i = 0; i < 8; i++) {
-    markers[i] = new google.maps.Marker({
-    title: "Marker: " + i
+  var myZoom = 19;
+  var myMarkerIsDraggable = true;
+  var myCoordsLength = 6;
+  var defaultLat = 28.594436;
+  var defaultLng = -81.304407;
+
+  var map = new google.maps.Map(document.getElementById('canvas'), {
+    zoom: myZoom,
+    center: new google.maps.LatLng(defaultLat, defaultLng),
+    mapTypeId: google.maps.MapTypeId.SATELLITE
+  });
+
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(response) {
+      var pos = new google.maps.LatLng(response.coords.latitude, response.coords.longitude);
+
+      mypos_lat = response.coords.latitude;
+      mypos_lng = response.coords.longitude;
+      
+      var win_pos = new google.maps.LatLng((response.coords.latitude+.00005), response.coords.longitude);
+
+      var infowindow = new google.maps.InfoWindow({
+        map: map,
+        position: win_pos,
+        animation: google.maps.Animation.BOUNCE,
+        content: 'You are here.'
+      });
+      var myPos = new google.maps.Marker({
+        position: pos,
+        map:map
+      })
+      map.setCenter(pos);
+    }, function() {
+      handleNoGeolocation(true);
     });
-  };
+  } else {
+    handleNoGeolocation(false);
+  }
 
-  $scope.GenerateMapMarkers = function() {
-    var d = new Date(); //To show marker location changes over time
-    $scope.date = d.toLocaleString();
+});
 
-    var numMarkers = Math.floor(Math.random() * 4) + 4; //between 4 to 8 markers
-    for (i = 0; i < numMarkers; i++) {
-      var lat = 43.6600000 + (Math.random() / 100);
-      var lng = -79.4103000 + (Math.random() / 100);
+ngMap.controller('dropMarker',function($scope,$firebase){
+  $scope.newMarker = function(){
+    var markerRef = new Firebase("https://blazing-fire-6476.firebaseio.com/marker");
+    $scope.markers = $firebase(markerRef);
 
-      var loc = new google.maps.LatLng(lat, lng);
-      markers[i].setPosition(loc);
-      markers[i].setMap($scope.map);
-    }
-  };
+    var myZoom = 19;
+    var myMarkerIsDraggable = true;
+    var myCoordsLength = 6;
+    var defaultLat = 28.594436;
+    var defaultLng = -81.304407;
 
-  $interval($scope.GenerateMapMarkers, 2000);
-  
-}]);
+    var map = new google.maps.Map(document.getElementById('canvas'), {
+      zoom: myZoom,
+      center: new google.maps.LatLng(defaultLat, defaultLng),
+      mapTypeId: google.maps.MapTypeId.SATELLITE
+    });
 
+    var myMarker = new google.maps.Marker({
+      position: new google.maps.LatLng(defaultLat, defaultLng),
+      draggable: myMarkerIsDraggable,
+      animation: google.maps.Animation.DROP
+    });
 
-ngMap.controller('showMarker', ['$scope', function($scope){
-  $scope.myMarkers = [];
-  $scope.addMarker = function ($event, $params){
-    // $scope.myMarkers.push(new google.maps.Marker({
-    //   map: $scope.map,
-    //   position: $params[0].latLng
-    // }));
-    // return myMarkers;
+    google.maps.event.addListener(myMarker, 'dragend', function(evt){
+      var lat = evt.latLng.lat().toFixed(myCoordsLength)
+      var lng = evt.latLng.lng().toFixed(myCoordsLength)
 
-    console.log($scope.map,$params);
+      $scope.position = lat+","+lng;
+      $scope.markers.$add($scope.position);
 
-  };
-}]);
+      console.log('NEW',evt.latLng.lat().toFixed(myCoordsLength),evt.latLng.lng().toFixed(myCoordsLength));
+    });
+
+    // centers the map on markers coords
+    map.setCenter(myMarker.position);
+
+    // adds the marker on the map
+    myMarker.setMap(map);
+  }
+});
 
 ngMap.controller('flagCoords', ['$scope', function($scope){
   $scope.getFlagCoords = function(){
