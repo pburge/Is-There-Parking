@@ -31,9 +31,18 @@ ngMap.controller('mapController', function($scope,$firebase)
   var defaultLat = 28.594436;
   var defaultLng = -81.304407;
 
+
+markerRef.on('value', function(snapshot) {
+  console.log(snapshot.val());
+
+  // for (var i = snapshot.length - 1; i >= 0; i--) {
+  //   snapshot[i]
+  // };
+});
+
+
   var map = new google.maps.Map(document.getElementById('canvas'), {
     zoom: myZoom,
-    center: new google.maps.LatLng(defaultLat, defaultLng),
     mapTypeId: google.maps.MapTypeId.SATELLITE
   });
 
@@ -67,18 +76,15 @@ ngMap.controller('mapController', function($scope,$firebase)
 
   $scope.newMarker = function(){
 
-    var myZoom = 19;
     var myMarkerIsDraggable = true;
     var myCoordsLength = 6;
     var defaultLat = 28.594436;
     var defaultLng = -81.304407;
 
-    $scope.position;
-
     var infowindow = new google.maps.InfoWindow({
       map: map,
       position: new google.maps.LatLng((defaultLat+.00005),defaultLng),
-      content: 'Drag me to the open spot!'
+      content: 'Close me, then drag me to the open spot!'
     });
 
     var myMarker = new google.maps.Marker({
@@ -93,6 +99,13 @@ ngMap.controller('mapController', function($scope,$firebase)
       var lng = evt.latLng.lng().toFixed(myCoordsLength)
 
       $scope.position = lat+","+lng;
+
+      // for (var i = $scope.markers.length - 1; i >= 0; i--) {
+      //   console.log($scope.markers[i]);
+      // };
+
+      console.log($scope.markers);
+
       $scope.markers.$add($scope.position);
     });
 
