@@ -22,12 +22,8 @@ ngMap.controller('mapController', function($scope,$firebase)
   var markerRef = new Firebase("https://blazing-fire-6476.firebaseio.com/marker");
   $scope.markers = $firebase(markerRef);
 
-  $scope.markers.$on('value', function(snapshot) {
-    console.log(snapshot);
-  });
-
-  var mypos_lat;
-  var mypos_lng;
+  var win_pos;
+  var pos;
 
   var myZoom = 19;
   var myMarkerIsDraggable = true;
@@ -48,7 +44,7 @@ ngMap.controller('mapController', function($scope,$firebase)
       mypos_lat = response.coords.latitude;
       mypos_lng = response.coords.longitude;
       
-      var win_pos = new google.maps.LatLng((response.coords.latitude+.00005), response.coords.longitude);
+      var win_pos = new google.maps.LatLng((response.coords.latitude), response.coords.longitude);
 
       var infowindow = new google.maps.InfoWindow({
         map: map,
@@ -58,7 +54,8 @@ ngMap.controller('mapController', function($scope,$firebase)
       });
       var myPos = new google.maps.Marker({
         position: pos,
-        map:map
+        map:map,
+        animation: google.maps.Animation.BOUNCE,
       })
       map.setCenter(pos);
     }, function() {
@@ -76,10 +73,19 @@ ngMap.controller('mapController', function($scope,$firebase)
     var defaultLat = 28.594436;
     var defaultLng = -81.304407;
 
+    $scope.position;
+
+    var infowindow = new google.maps.InfoWindow({
+      map: map,
+      position: new google.maps.LatLng((defaultLat+.00005),defaultLng),
+      content: 'Drag me to the open spot!'
+    });
+
     var myMarker = new google.maps.Marker({
       position: new google.maps.LatLng(defaultLat, defaultLng),
       draggable: myMarkerIsDraggable,
-      animation: google.maps.Animation.DROP
+      animation: google.maps.Animation.DROP,
+      icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
     });
 
     google.maps.event.addListener(myMarker, 'dragend', function(evt){
@@ -88,8 +94,6 @@ ngMap.controller('mapController', function($scope,$firebase)
 
       $scope.position = lat+","+lng;
       $scope.markers.$add($scope.position);
-
-      console.log('NEW',evt.latLng.lat().toFixed(myCoordsLength),evt.latLng.lng().toFixed(myCoordsLength));
     });
 
     // centers the map on markers coords
