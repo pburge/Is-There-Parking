@@ -17,8 +17,15 @@ ngMap.controller("extraMarker",function($scope){
 
 });
 
-ngMap.controller('mapController', function($scope)
+ngMap.controller('mapController', function($scope,$firebase)
 {
+  var markerRef = new Firebase("https://blazing-fire-6476.firebaseio.com/marker");
+  $scope.markers = $firebase(markerRef);
+
+  $scope.markers.$on('value', function(snapshot) {
+    console.log(snapshot);
+  });
+
   var mypos_lat;
   var mypos_lng;
 
@@ -61,24 +68,13 @@ ngMap.controller('mapController', function($scope)
     handleNoGeolocation(false);
   }
 
-});
-
-ngMap.controller('dropMarker',function($scope,$firebase){
   $scope.newMarker = function(){
-    var markerRef = new Firebase("https://blazing-fire-6476.firebaseio.com/marker");
-    $scope.markers = $firebase(markerRef);
 
     var myZoom = 19;
     var myMarkerIsDraggable = true;
     var myCoordsLength = 6;
     var defaultLat = 28.594436;
     var defaultLng = -81.304407;
-
-    var map = new google.maps.Map(document.getElementById('canvas'), {
-      zoom: myZoom,
-      center: new google.maps.LatLng(defaultLat, defaultLng),
-      mapTypeId: google.maps.MapTypeId.SATELLITE
-    });
 
     var myMarker = new google.maps.Marker({
       position: new google.maps.LatLng(defaultLat, defaultLng),
@@ -102,6 +98,11 @@ ngMap.controller('dropMarker',function($scope,$firebase){
     // adds the marker on the map
     myMarker.setMap(map);
   }
+
+});
+
+ngMap.controller('dropMarker',function($scope,$firebase){
+
 });
 
 ngMap.controller('flagCoords', ['$scope', function($scope){
