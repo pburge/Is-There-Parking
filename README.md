@@ -1,4 +1,4 @@
-mdd-final-project
+MDD Final Project
 =================
 
-home for the "is there parking?" mobile web app
+Home for the "Is There Parking?" mobile web app made with AngularJS.
