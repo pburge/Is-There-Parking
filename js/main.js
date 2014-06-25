@@ -1,3 +1,6 @@
+
+//--------- everything in this file is pretty much saved as a reference. do not uncomment.
+
 // function initialize() {
 // 	var lat = 28.5968780;
 // 	var lng = -81.3007476;
