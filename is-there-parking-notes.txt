@@ -1,11 +1,4 @@
-unit test - code func
-end to end - open a browser and checks elements
-
-
-
 ---mobile app
-next 2 weeeks final project bootcamp
-day 9 is alpha, day 10 is final
 must be in angular. data must come in from api or db. or both
 must use a mobile-first front end framework, testing will be done on a mobile device. 
 site must be mobile first.
@@ -16,18 +9,12 @@ one question: how are people going to know about the product?
 -there was an app name roomies where one could sign up with roomates to track bills. 
 -a budget mngmt system that emails people depending on the due date.
 
-g4tv: dice - design outside the box:
-
-
-
 --target audience is toward fullsail students.
 something that addresses an issue. 
 for example: "should i ride my bike today" -- checks weather and says yes or no.
 
 --notes:
 COMMENT EVERYTHING (specifically, logics);
-
-
 
 
 ---idea:
@@ -56,21 +43,5 @@ COMMENT EVERYTHING (specifically, logics);
 ----------------------------
 
 maybe have a referal
-have a system limit as to how long they wil be open
+have a system limit as to how long they will be open
 an approzimate spot. 
-
-
-
-
-
-
-320
-
-
-768
-992
-1200
-
-
-
-
