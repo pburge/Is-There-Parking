@@ -1,4 +1,4 @@
-var ngMap = angular.module('parking', ['ngMap','ngRoute','firebase']);  //map directives
+var ngMap = angular.module('parking', ['google-maps','ngRoute','firebase']);  //map directives
 
 ngMap.config(function($routeProvider) {
   $routeProvider.

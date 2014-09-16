@@ -7,27 +7,29 @@
 
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<!-- Other Style Sheets -->
-	<link rel="stylesheet" href="css/main.css">
 
 </head>
 <body>
 	<div class='container'>
 		<div class="navbar navbar-default" role="navigation">
+			<!-- this div just collapses the register button and sign in field when on mobile. -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
+				<!-- my brand! -->
 				<a class="navbar-brand" href="#/">Is There Parking?</a>
 			</div>
+			<!-- register button -->
 			<div class="collapse navbar-collapse">
 				<div class="navbar-form navbar-left">
 					<a href="#/register">
 						<button class='btn btn-info'>Register</button>
 					</a>
 				</div>
+				<!-- sign in form at the upper right corner -->
 				<form class="navbar-form navbar-right">
 					<div class="divider"></div>
 					<div class="form-group">
@@ -42,6 +44,7 @@
 			</div>
 		</div>
 
+		<!-- where map is loaded: app/templates/index.html -->
 		<div ng-view=''>
 		</div>
 
@@ -50,18 +53,23 @@
 	<!-- Linked Scripts -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLz7utlcbbD1lE4QfStrnxkiHr9wU1C8g&sensor=false"></script>
 
 	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.js'></script>
 	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.js'></script>
-	
 
+		<!-- scripts for the map -->
+		<!-- from: http://angular-google-maps.org/ -->
+	<script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+	<script src='app/bower_components/underscore/underscore.js'></script>
+	<script src='app/bower_components/angular-google-maps/dist/angular-google-maps.js'></script>
+
+		<!-- firebase -->
 	<script src="https://cdn.firebase.com/js/client/1.0.11/firebase.js"></script>
 	<script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
 
+		<!-- app and main -->
 	<script src='app/app.js'></script>
-	<script src="http://rawgithub.com/allenhwkim/angularjs-google-maps/master/dist/ng-map.min.js"></script>
-	<script src='js/main.js'></script>
+
 
 </body>
 </html>
