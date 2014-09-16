@@ -1,0 +1,37 @@
+<style>
+
+  @media (min-width: 300px) {
+    map, div[map] { display:block; height:270px; }
+  }
+
+  @media (min-width: 768px) {
+    map, div[map] { display:block; height:400px; }
+    /*.spot{
+      visibility:hidden;
+    }*/
+  }
+
+  @media (min-width: 992px) {
+    map, div[map] { display:block; height:500px; }
+    /*.spot{
+      visibility:hidden;
+    }*/
+  }
+
+  @media (min-width: 1200px) {
+    map, div[map] { display:block; height:300px; }
+    /*.spot{
+      visibility:hidden;
+    }*/
+  }
+
+</style>
+
+<div>
+  <map id='google_map' zoom="20"  map-type-id="MapTypeId.SATELLITE" ng-controller="extraMarker">
+    <marker position="current" animation="Animation.BOUNCE" centered="true" title='' ></marker>
+    <marker ng-controller="dropMarker" ng-repeat="p in positions" position="{{p}}" title="{{p.toString()}}" icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" draggable="true" animation="Animation.DROP"></marker>
+    <br>
+     <button id='drop' ng-controller="dropMarker" ng-click="newMarker()" class='spot btn btn-info btn-lg btn-block'>Point out a spot</button>
+  </map>
+</div>

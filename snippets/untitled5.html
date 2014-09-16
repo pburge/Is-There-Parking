@@ -1,0 +1,106 @@
+<style>
+
+	@media (min-width: 300px) {
+		map, div[map] { display:block; height:270px; }
+	}
+
+	@media (min-width: 768px) {
+		map, div[map] { display:block; height:400px; }
+		/*.spot{
+			visibility:hidden;
+		}*/
+	}
+
+	@media (min-width: 992px) {
+		map, div[map] { display:block; height:500px; }
+		/*.spot{
+			visibility:hidden;
+		}*/
+	}
+
+	@media (min-width: 1200px) {
+		map, div[map] { display:block; height:300px; }
+		/*.spot{
+			visibility:hidden;
+		}*/
+	}
+
+</style>
+
+<script id="my-script">
+
+
+	function addMyMarker() { //function that will add markers on button click
+
+	}
+
+  function showMarker($scope,$firebase) {
+    var mypos;
+    // $scope.positions =[];
+    $scope.addMarker = function(){
+      // $scope.positions=[];
+      navigator.geolocation.getCurrentPosition(function(response){
+      // $scope.positions=[];
+
+        var markerRef = new Firebase("https://blazing-fire-6476.firebaseio.com/marker");
+        $scope.marker = $firebase(markerRef);
+
+        var mypos = response.coords.latitude + ',' + (response.coords.longitude - .100);
+        console.log('array',$scope.positions);
+
+        $scope.marker.$add($scope.positions[$scope.positions.length-1]);
+
+        markerRef.on('value',function(snapshot){
+          console.log(snapshot.val());
+          $scope.addMarker = function(){
+            snapshot.val();
+          }
+        });
+
+        // $scope.positions.splice(0, 1);
+
+        console.log('POSITION:',mypos);
+        },function(errorResponse){
+        console.log('error', errorResponse)
+      });
+
+    }
+  }
+
+
+</script>
+
+<div ng-controller="extraMarker">
+  <ul ng-repeat="m in markers">
+    <li>{{ m }}</li>
+  </ul>
+  <input type="text" ng-model="newMarker"/>
+  <button type="submit" ng-click="addMarker()">Add New Marker</button>
+</div>
+
+<div id="my-html" ng-controller="MyCtrl">
+  <map id='google_map' zoom="20" map-type-id="MapTypeId.SATELLITE" ng-controller="MyCtrl">
+    <marker position="current" animation="Animation.BOUNCE" centered="true"></marker>
+    <!-- <marker ng-controller='extraMarker' ng-repeat="m in markers" position="{{m}}" title="{{m.toString()}}" icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" draggable="true" animation="Animation.DROP"></marker> -->
+    <marker ng-repeat="p in positions" position="{{p}}" title="{{p.toString()}}" icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" draggable="true" animation="Animation.DROP"></marker>
+
+  </map>
+  <br>
+  <button id='drop' ng-controller="showMarker" ng-click="addMarker()" class='spot btn btn-info btn-lg btn-block'>Point out a spot</button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

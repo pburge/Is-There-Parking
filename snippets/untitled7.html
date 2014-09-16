@@ -1,0 +1,19 @@
+
+<div ng-controller="extraMarker">
+  <ul ng-repeat="m in markers">
+    <li>{{ m }}</li>
+  </ul>
+  <input type="text" ng-model="newMarker"/>
+  <button type="submit" ng-click="addMarker()">Add New Marker</button>
+</div>
+
+<div id="my-html" ng-controller="MyCtrl">
+  <map id='google_map' zoom="20" map-type-id="MapTypeId.SATELLITE" ng-controller="MyCtrl">
+    <marker position="current" animation="Animation.BOUNCE" centered="true"></marker>
+
+    <marker ng-controller='MyCtrl' ng-repeat="m in marker" position="{{m}}" title="{{m.toString()}}" icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png" draggable="true" animation="Animation.DROP"></marker>
+  </map>
+  <br>
+  <button id='drop' ng-controller="MyCtrl" ng-click="addMarker()" class='spot btn btn-info btn-lg btn-block'>Point out a spot</button>
+
+</div>

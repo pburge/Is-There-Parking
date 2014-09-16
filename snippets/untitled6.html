@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="parking">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Is There Parking</title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- Other Style Sheets -->
+	<link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+	<div class='container'>
+		<div class="navbar navbar-default" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#/">Is There Parking?</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<div class="navbar-form navbar-left">
+					<a href="#/register">
+						<button class='btn btn-info'>Register</button>
+					</a>
+				</div>
+				<form class="navbar-form navbar-right">
+					<div class="divider"></div>
+					<div class="form-group">
+						<input id="username" type="text" placeholder="username" class="form-control">
+					</div>
+					<div class="form-group">
+						<input id="password" type="password" placeholder="password" class="form-control">
+					</div>
+					<button id="button" type="submit" class="btn btn-success">Sign in</button>
+				</form>
+
+			</div>
+		</div>
+
+		<div ng-view=''>
+		</div>
+
+	</div>
+
+	<!-- Linked Scripts -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLz7utlcbbD1lE4QfStrnxkiHr9wU1C8g&sensor=false"></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular-route.js'></script>
+	<script src="https://cdn.firebase.com/js/client/1.0.11/firebase.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+
+	<script src='app/app.js'></script>
+
+</body>
+</html>
+
